@@ -1,24 +1,13 @@
-import logo from './logo.svg';
-import './App.css';
+import Join from './Pages/Join';
+import { useSelector } from 'react-redux';
 
 function App() {
+  const showList = useSelector((state)=>state.map((i,index)=>(<li key={index}>{i.name}/{i.id}/{i.pw}</li>)))
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+    <Join/>
+    <ul>{showList}</ul>
+    </>
   );
 }
 
