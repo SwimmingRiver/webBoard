@@ -12,6 +12,12 @@ export let initialState =[
             id:"two",
             pw:"2",
             on:false
+        },
+        {
+            name:"aa",
+            id:"aa",
+            pw:"aa",
+            on:false,
         }
 ]
 
@@ -23,6 +29,9 @@ export const userInfoSlice = createSlice({
         userJoin:(state,action)=>{
             state.push(action.payload);
         },
+        userLogin:(state,action)=>{
+            state.on =true;
+        }
     }
 })
 export default userInfoSlice.reducer;
