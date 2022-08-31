@@ -30,7 +30,9 @@ export const userInfoSlice = createSlice({
             state.push(action.payload);
         },
         userLogin:(state,action)=>{
-            state.on =true;
+            action.payload.on = true
+            
+            state.splice(state.map(i=>i.id).indexOf(action.payload.id),1,action.payload);
         }
     }
 })

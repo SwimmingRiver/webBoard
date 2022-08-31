@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import userInfoSlice from './../Redux/UserReducer';
+import {userInfoSlice} from './../Redux/UserReducer';
 
 function Login(){
     const [userLog,setUserLog]=useState({id:"",pw:"",on:false})
@@ -16,7 +16,7 @@ function Login(){
             on:false,
         }))
     }
-    const showLogin = useSelector((state)=>(state.map(i=>i.on?<h2>{i.name}</h2>:null)));
+    const showLogin = useSelector((state)=>(state.map((i,index)=>i.on?<h2 key={index}>{i.name} is login</h2>:null)));
     const List = useSelector((state)=>state);
     
 
@@ -31,7 +31,8 @@ function Login(){
                     name:List[List.map(i=>i.id).indexOf(userLog.id)].name,
                     on:List[List.map(i=>i.id).indexOf(userLog.id)].on,
                 }
-                dispatch(userInfoSlice.actions.userLogin(lList.on))
+                dispatch(userInfoSlice.actions.userLogin(lList))
+                alert("login")
             }else{alert("잘못된 비밀번호입니다.")}
         }else{alert("가입되지않은 아이디입니다.")}
         
