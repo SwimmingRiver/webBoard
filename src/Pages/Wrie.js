@@ -1,7 +1,7 @@
 
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { postSlice } from '../Redux/PostReducer';
+import {userInfoSlice} from './../Redux/UserReducer';
 
 function Write(){
     const [post,setPost]=useState({
@@ -10,7 +10,7 @@ function Write(){
         writer:"",
     })
     const dispatch =useDispatch();
-    const writerData = useSelector((state)=>state.on?state.id:null)
+    const writerData = useSelector((state)=>state[0].map((i)=>i));
     const handleOnChange=(e)=>{
         const {name,value}=e.target;
         setPost((prev)=>({
@@ -19,17 +19,23 @@ function Write(){
             writer:"",
         }))
     }
+    const posting = (title,content)=>{
+       let writer = ""
+        for(let i = 0;i<writerData.length;i++){
+         if(writerData[i].on){
+             writer=writerData[i].id
+         }
+        }
+         let lList = {
+             title:title,
+             content:content,
+             writer:writer,
+         }
+         return lList;
+    }
     const submit = ()=>{
-        if(writerData!==null){
-        let lList = {
-            title:post.title,
-            content:post.content,
-            writer:writerData,
-        }
-        dispatch(postSlice.actions.submit(lList))
-        }else if(writerData===null){
-            alert("로그인을 해주세요")
-        }
+      
+        dispatch(userInfoSlice.actions.boardPost(posting(post.title,post.content)))
     }
 
     return<>

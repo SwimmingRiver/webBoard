@@ -4,7 +4,7 @@ import Login from './Pages/Login';
 import Write from './Pages/Wrie';
 
 function App() {
-  const showList = useSelector((state)=>state.map((i,index)=>(<li key={index}>{i.name}/{i.id}/{i.pw}/{i.on.toString()}</li>)))
+  const showList = useSelector((state)=>state[0].map((i,index)=>(<li key={index}>{i.name}/{i.id}/{i.pw}/{i.on.toString()}</li>)))
   return (
     <>
     <Join/>

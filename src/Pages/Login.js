@@ -16,8 +16,8 @@ function Login(){
             on:false,
         }))
     }
-    const showLogin = useSelector((state)=>(state.map((i,index)=>i.on?<h2 key={index}>{i.name} is login</h2>:null)));
-    const List = useSelector((state)=>state);
+    const showLogin = useSelector((state)=>(state[0].map((i,index)=>i.on?<h2 key={index}>{i.name} is login</h2>:null)));
+    const List = useSelector((state)=>state[0]);
     
 
 

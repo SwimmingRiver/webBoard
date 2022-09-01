@@ -13,7 +13,7 @@ function Join(){
     const [nameCheck,setNameCheck]=useState(false);
 
     const dispatch = useDispatch();
-   const List = useSelector((state)=>state);
+   const List = useSelector((state)=>state[0]);
     const CheckId=(e)=>{
         e.preventDefault();
         let findId = List.map((i)=>i.id)

@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 export let initialState =[
-        {
+      [{
             name:"one",
             id:"one",
             pw:"1",
@@ -18,7 +18,14 @@ export let initialState =[
             id:"aa",
             pw:"aa",
             on:false,
-        }
+        }],
+        [
+            {
+                title:"",
+                content:"",
+                writer:"",
+            }
+        ]
 ]
 
 
@@ -27,13 +34,17 @@ export const userInfoSlice = createSlice({
     initialState,
     reducers:{
         userJoin:(state,action)=>{
-            state.push(action.payload);
+            state[0].push(action.payload);
         },
         userLogin:(state,action)=>{
             action.payload.on = true
             
-            state.splice(state.map(i=>i.id).indexOf(action.payload.id),1,action.payload);
+            state[0].splice(state.map(i=>i.id).indexOf(action.payload.id),1,action.payload);
+        },
+        boardPost:(state,action)=>{
+            state[1].push(action.payload);
         }
+        
     }
 })
 export default userInfoSlice.reducer;
