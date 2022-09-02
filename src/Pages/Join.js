@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { useState } from "react";
 import { useDispatch,useSelector} from "react-redux";
 import {userInfoSlice} from './../Redux/UserReducer';
+import {useNavigate} from 'react-router-dom';
 const Sector = styled.div`
     display: flex;
 `;
@@ -11,7 +12,7 @@ function Join(){
     const [rePassword,setRePassword]=useState("");
     const [idCheck,setIdCheck]=useState(false);
     const [nameCheck,setNameCheck]=useState(false);
-
+    const navigate = useNavigate();
     const dispatch = useDispatch();
    const List = useSelector((state)=>state[0]);
     const CheckId=(e)=>{
@@ -54,6 +55,7 @@ function Join(){
         }else{
             dispatch(userInfoSlice.actions.userJoin(addUser(user.id,user.password,user.name)));
             alert("Join!");
+            navigate("/webBoard/");
         }
     }
 

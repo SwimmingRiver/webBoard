@@ -11,6 +11,7 @@ function Write(){
     })
     const dispatch =useDispatch();
     const writerData = useSelector((state)=>state[0].map((i)=>i));
+    const clist = useSelector(state=>state);
     const handleOnChange=(e)=>{
         const {name,value}=e.target;
         setPost((prev)=>({
@@ -34,7 +35,7 @@ function Write(){
          return lList;
     }
     const submit = ()=>{
-      
+        console.log(clist);
         dispatch(userInfoSlice.actions.boardPost(posting(post.title,post.content)))
     }
 

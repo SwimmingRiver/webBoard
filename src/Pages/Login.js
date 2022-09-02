@@ -3,11 +3,12 @@ import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import {userInfoSlice} from './../Redux/UserReducer';
+import { useNavigate } from 'react-router-dom';
 
 function Login(){
     const [userLog,setUserLog]=useState({id:"",pw:"",on:false})
     const dispatch = useDispatch();
-
+    const navigate = useNavigate();
     const handleOnChange=(e)=>{
         const {name,value}=e.target;
         setUserLog((prev)=>({
@@ -33,6 +34,8 @@ function Login(){
                 }
                 dispatch(userInfoSlice.actions.userLogin(lList))
                 alert("login")
+                console.log(lList);
+                navigate("/webBoard");
             }else{alert("잘못된 비밀번호입니다.")}
         }else{alert("가입되지않은 아이디입니다.")}
         

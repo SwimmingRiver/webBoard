@@ -35,11 +35,13 @@ export const userInfoSlice = createSlice({
     reducers:{
         userJoin:(state,action)=>{
             state[0].push(action.payload);
+            localStorage.setItem("userList",JSON.stringify(state[0]))
         },
         userLogin:(state,action)=>{
             action.payload.on = true
             
             state[0].splice(state.map(i=>i.id).indexOf(action.payload.id),1,action.payload);
+            
         },
         boardPost:(state,action)=>{
             state[1].push(action.payload);
