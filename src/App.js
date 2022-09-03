@@ -11,6 +11,7 @@ import OPost from './Pages/OPost';
 function App() {
   const [loginToggle,setLoginToggle]=useState(false);
   const loginLoad = useSelector((state)=>state[0].map(i=>i));
+  const postLoad = useSelector((state)=>state[1].map(i=>i));
   const [showUser,setShowUser]=useState("");
  const aaa=()=>{ 
     for(let i=0;i<loginLoad.length;i++){
@@ -23,8 +24,8 @@ function App() {
       break;
     }
   }}
-  useEffect(aaa,[loginLoad]);
-    return (
+  useEffect(aaa,[loginLoad]); 
+  return (
     <>
     <h1>welcome,{showUser}</h1>
     <BrowserRouter>
@@ -39,7 +40,7 @@ function App() {
             <Route path="/webBoard/join" element={<Join/>}/>
             <Route path='/webBoard/write' element={<Write/>}/>
             <Route path='/webBoard/board' element={<Board/>}/>
-            <Route path='/webBoard/Post' element={<OPost/>}/>
+            <Route path='/webBoard/Post/:index' element={<OPost/>}/>
         </Routes>
        
     </BrowserRouter>

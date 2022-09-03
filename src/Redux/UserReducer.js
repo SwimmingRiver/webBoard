@@ -21,9 +21,9 @@ export let initialState =[
         }],
         [
             {
-                title:"",
-                content:"",
-                writer:"",
+                title:"notice",
+                content:"notice",
+                writer:"master",
             }
         ]
 ]
