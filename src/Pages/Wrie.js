@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {userInfoSlice} from './../Redux/UserReducer';
+import { useNavigate } from 'react-router-dom';
 
 function Write(){
     const [post,setPost]=useState({
@@ -11,6 +12,7 @@ function Write(){
     })
     const dispatch =useDispatch();
     const writerData = useSelector((state)=>state[0].map((i)=>i));
+    const navigate = useNavigate();
     const clist = useSelector(state=>state);
     const handleOnChange=(e)=>{
         const {name,value}=e.target;
@@ -35,8 +37,9 @@ function Write(){
          return lList;
     }
     const submit = ()=>{
-        console.log(clist);
         dispatch(userInfoSlice.actions.boardPost(posting(post.title,post.content)))
+        alert("작성 완료");
+        navigate("/webBoard/board")
     }
 
     return<>

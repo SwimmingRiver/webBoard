@@ -2,6 +2,12 @@ import { createSlice } from "@reduxjs/toolkit";
 
 export let initialState =[
       [{
+        name:"master",
+        id:"master",
+        pw:"1q2w3e",
+        on:false
+        },
+        {
             name:"one",
             id:"one",
             pw:"1",
@@ -39,9 +45,11 @@ export const userInfoSlice = createSlice({
         },
         userLogin:(state,action)=>{
             action.payload.on = true
-            
             state[0].splice(state.map(i=>i.id).indexOf(action.payload.id),1,action.payload);
-            
+        },
+        userLogout:(state,action)=>{
+            action.payload.on =false;
+            state[0].splice(state.map(i=>i.id).indexOf(action.payload.id),1,action.payload);
         },
         boardPost:(state,action)=>{
             state[1].push(action.payload);
