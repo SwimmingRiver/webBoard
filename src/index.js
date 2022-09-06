@@ -5,6 +5,7 @@ import { createGlobalStyle } from 'styled-components';
 import App from './App';
 import { userStore } from './Redux/UserStore';
 
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const GlobalStyle = createGlobalStyle`
   html, body, div, span, applet, object, iframe,

@@ -5,6 +5,12 @@ import {userInfoSlice} from './../Redux/UserReducer';
 import {useNavigate} from 'react-router-dom';
 const Sector = styled.div`
     display: flex;
+    margin-bottom: 10px;
+    justify-content: space-around;
+`;
+const Subject = styled.p`
+    font-family: 'Source Sans Pro';
+    font-size: 25px;
 `;
 
 function Join(){
@@ -72,20 +78,20 @@ function Join(){
     <h1>Join</h1>
     <form onSubmit={Submit}>
     <Sector>
-        <p>id</p>
+        <Subject>ID </Subject>
         <input onChange={handleOnChange} name="id" value={user.id}/>
         <button type="idCheck" onClick={CheckId}>check</button>
     </Sector>
     <Sector>
-        <p>pw</p>
+        <Subject>PW </Subject>
         <input onChange={handleOnChange} name="password"value={user.password}/>
     </Sector>
     <Sector>
-        <p>pw repeat</p>
+        <Subject>Pw Repeat </Subject>
         <input onChange={checkRePw} name="rePassword" value={rePassword}/>
     </Sector>
     <Sector>
-        <p>name</p>
+        <Subject>NAME </Subject>
         <input onChange={handleOnChange} name="name" value={user.name}/>
         <button onClick={CheckName}>check</button>
     </Sector>

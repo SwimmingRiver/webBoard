@@ -8,7 +8,7 @@ import {useEffect, useState} from 'react';
 import Board from './Pages/Board';
 import OPost from './Pages/OPost';
 import {userInfoSlice} from './Redux/UserReducer';
-
+import styled from 'styled-components';
 function App() {
   const [loginToggle,setLoginToggle]=useState(false);
   const loginLoad = useSelector((state)=>state[0].map(i=>i));
@@ -51,16 +51,47 @@ function App() {
       dispatch(userInfoSlice.actions.userLogout(outUser)); 
     }
   
+//styled
+    const Wrapper =styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100vw;
+  `;
+  const Title = styled.h1`
+    font-size: 60px;
+    font-family: 'Kanit';
+  `;
+  const LinkList = styled.ul`
+    display: flex;
+    justify-content: space-around;
+    border:solid 2px black;
+    border-radius: 10px;
+    width: 70vw;
+ `;
+ const StyledLink = styled(Link)`
+  text-decoration: none;
+  font-size: 50px;
+  color: black;
+  font-family: 'raleway';
+ `;
+
+
+
   return (
     <>
-    <h1 style={{fontFamily:'Roboto',fontSize:"60px"}}>welcome,{showUser}</h1>
+    <Wrapper>
+    <Title>Web Board</Title>
+    <h1 style={{fontFamily:'Roboto',fontSize:"30px"}}>welcome {showUser}</h1>
     {loginToggle?<button onClick={logOut}>logout</button>:null}
     <BrowserRouter>
-    <Link to="/webBoard/">Home</Link>
-    {loginToggle?null:<Link to="/webBoard/join">Join</Link>}
-    {loginToggle?null:<Link to="/webBoard/login">Login</Link>}
-    {loginToggle?<Link to="/webBoard/write">Write</Link>:null}
-    <Link to="/webBoard/board">Board</Link>
+    <LinkList>
+    <li><StyledLink to="/webBoard/">Home</StyledLink></li>
+    <li>{loginToggle?null:<StyledLink to="/webBoard/join">Join</StyledLink>}</li>
+    {loginToggle?null:<StyledLink to="/webBoard/login">Login</StyledLink>}
+    {loginToggle?<StyledLink to="/webBoard/write">Write</StyledLink>:null}
+    <StyledLink to="/webBoard/board">Board</StyledLink>
+    </LinkList>
         <Routes>
             <Route path="/webBoard/" element={<Main/>}/>
             <Route path="/webBoard/login" element={<Login/>}/>
@@ -71,7 +102,9 @@ function App() {
         </Routes>
        
     </BrowserRouter>
+    </Wrapper>
     </>
+
   );
 }
 
