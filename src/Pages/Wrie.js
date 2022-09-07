@@ -3,7 +3,39 @@ import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {userInfoSlice} from './../Redux/UserReducer';
 import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
 
+const WriterTitle = styled.h1`
+    font-size: 60px;
+    font-family: 'Kanit';
+  `;
+const WriteWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    height: 50vh;
+    width: 50vw;
+`;
+const TitleBox = styled.input`
+    width: 30vw;
+`;
+const ContentBox = styled.textarea`
+    width: 30vw;
+    height: 30vh;
+`;
+const WriteSubject = styled.h2`
+    font-family: 'Raleway';
+    font-size: 15px;
+`;
+const SubmitButton = styled.button`
+    font-family: 'Raleway';
+    font-size: 12px;
+    width: 60px;
+    background-color: white;
+    border-radius: 5px;
+    border: 1px solid black;
+`;
 function Write(){
     const [post,setPost]=useState({
         title:"",
@@ -43,12 +75,14 @@ function Write(){
     }
 
     return<>
-        <h1>Write</h1>
-        <h2>title</h2>
-        <input name='title' value={post.title} onChange={handleOnChange}/>
-        <h2>contents</h2>
-        <textarea name='content' value={post.content} onChange={handleOnChange}/>
-        <button onClick={submit}>submit</button>
+        <WriterTitle>Write</WriterTitle>
+        <WriteWrapper>
+        <WriteSubject>TITLE</WriteSubject>
+        <TitleBox name='title' value={post.title} onChange={handleOnChange}/>
+        <WriteSubject>CONTENTS</WriteSubject>
+        <ContentBox name='content' value={post.content} onChange={handleOnChange}/>
+        <SubmitButton onClick={submit}>SUBMIT</SubmitButton>
+        </WriteWrapper>
     </>
 }
 export default Write;

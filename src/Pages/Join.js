@@ -7,12 +7,43 @@ const Sector = styled.div`
     display: flex;
     margin-bottom: 10px;
     justify-content: space-around;
+    width: 300px;
+    
 `;
-const Subject = styled.p`
+const JoinSubject = styled.p`
     font-family: 'Source Sans Pro';
     font-size: 25px;
 `;
-
+const JoinWrapper = styled.div`
+    border:solid 0.5px black;
+    margin: 15px 0 0 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 40vw;
+    height: 30vh;
+`;
+const Title = styled.h1`
+    font-size: 60px;
+    font-family: 'Kanit';
+  `;
+const CheckButton = styled.button`
+    font-family: 'Raleway';
+    font-size: 12px;
+    background-color: white;
+    border-radius: 5px;
+    border: 1px solid black;
+    
+`;
+const JoinButton = styled.button`
+    font-family: 'Raleway';
+    font-size: 12px;
+    width: 60px;
+    background-color: white;
+    border-radius: 5px;
+    border: 1px solid black;
+`;
 function Join(){
     const [user,setUser]=useState({id:"",password:"",name:"",on:false})
     const [rePassword,setRePassword]=useState("");
@@ -75,27 +106,29 @@ function Join(){
     }
     const checkRePw=(e)=>{ setRePassword(e.target.value)}
     return<>
-    <h1>Join</h1>
+    <Title>Join</Title>
     <form onSubmit={Submit}>
+        <JoinWrapper>
     <Sector>
-        <Subject>ID </Subject>
+        <JoinSubject>ID </JoinSubject>
         <input onChange={handleOnChange} name="id" value={user.id}/>
-        <button type="idCheck" onClick={CheckId}>check</button>
+        <CheckButton type="idCheck" onClick={CheckId}>CHECK</CheckButton>
     </Sector>
     <Sector>
-        <Subject>PW </Subject>
+        <JoinSubject>PW </JoinSubject>
         <input onChange={handleOnChange} name="password"value={user.password}/>
     </Sector>
     <Sector>
-        <Subject>Pw Repeat </Subject>
+        <JoinSubject>Pw Repeat </JoinSubject>
         <input onChange={checkRePw} name="rePassword" value={rePassword}/>
     </Sector>
     <Sector>
-        <Subject>NAME </Subject>
+        <JoinSubject>NAME </JoinSubject>
         <input onChange={handleOnChange} name="name" value={user.name}/>
-        <button onClick={CheckName}>check</button>
+        <CheckButton onClick={CheckName}>CHECK</CheckButton>
     </Sector>
-    <button type="submit">Join</button>
+    <JoinButton type="submit">JOIN</JoinButton>
+    </JoinWrapper>
     </form>
     </>
 }

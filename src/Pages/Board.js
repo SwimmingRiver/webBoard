@@ -2,9 +2,8 @@ import {Link} from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import OPost from './OPost';
 import styled from 'styled-components';
-function Board(){
-    const loadList = useSelector((state)=>state[1].map(i=>i));
-    const DesginedList = styled.ul`
+
+const DesginedList = styled.ul`
         border:solid 1px black ;
         border-radius: 5px;
         width: 70vw;
@@ -44,6 +43,12 @@ function Board(){
         text-decoration: none;
         color: black;
     `;
+
+
+
+function Board(){
+    const loadList = useSelector((state)=>state[1].map(i=>i));
+    
     return<>
     <h1>Board</h1>
      <DesginedList><li>번호</li><li>제목</li><li>작성자</li></DesginedList>

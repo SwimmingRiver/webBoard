@@ -4,6 +4,27 @@ import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import {userInfoSlice} from './../Redux/UserReducer';
 import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
+
+const LoginTitle = styled.h1`
+    font-size: 60px;
+    font-family: 'Kanit';
+  `;
+const LoginWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    height: 15vh;
+`;
+const LoginButton = styled.button`
+    font-family: 'Raleway';
+    font-size: 12px;
+    width: 60px;
+    background-color: white;
+    border-radius: 5px;
+    border: 1px solid black;
+`;
 
 function Login(){
     const [userLog,setUserLog]=useState({id:"",pw:"",on:false})
@@ -44,11 +65,13 @@ function Login(){
     }
     
     return(<>
-        <h1>Login</h1>
+        <LoginTitle>Login</LoginTitle>
+        <LoginWrapper>
         <input placeholder="id" name="id" value={userLog.id} onChange={handleOnChange}/>
         <input placeholder="pw" name='pw' value={userLog.pw} onChange={handleOnChange}/>
-        <button onClick={login}>login</button>
+        <LoginButton onClick={login}>login</LoginButton>
         {showLogin}
+        </LoginWrapper>
     </>)
 }
 

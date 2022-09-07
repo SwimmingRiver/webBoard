@@ -9,6 +9,44 @@ import Board from './Pages/Board';
 import OPost from './Pages/OPost';
 import {userInfoSlice} from './Redux/UserReducer';
 import styled from 'styled-components';
+
+//styled
+const Wrapper =styled.div`
+display: flex;
+flex-direction: column;
+align-items: center;
+width: 100vw;
+`;
+const Title = styled.h1`
+font-size: 60px;
+font-family: 'Kanit';
+`;
+const LinkList = styled.ul`
+display: flex;
+justify-content: space-around;
+border:solid 2px black;
+border-radius: 10px;
+width: 70vw;
+margin-bottom: 10px;
+`;
+const StyledLink = styled(Link)`
+text-decoration: none;
+font-size: 50px;
+color: black;
+font-family: 'raleway';
+`;
+const LogoutButton = styled.button`
+font-family: 'Raleway';
+font-size: 12px;
+width: 75px;
+background-color: white;
+border-radius: 5px;
+border: 1px solid black;
+`;
+
+
+
+
 function App() {
   const [loginToggle,setLoginToggle]=useState(false);
   const loginLoad = useSelector((state)=>state[0].map(i=>i));
@@ -51,31 +89,6 @@ function App() {
       dispatch(userInfoSlice.actions.userLogout(outUser)); 
     }
   
-//styled
-    const Wrapper =styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100vw;
-  `;
-  const Title = styled.h1`
-    font-size: 60px;
-    font-family: 'Kanit';
-  `;
-  const LinkList = styled.ul`
-    display: flex;
-    justify-content: space-around;
-    border:solid 2px black;
-    border-radius: 10px;
-    width: 70vw;
- `;
- const StyledLink = styled(Link)`
-  text-decoration: none;
-  font-size: 50px;
-  color: black;
-  font-family: 'raleway';
- `;
-
 
 
   return (
@@ -83,7 +96,7 @@ function App() {
     <Wrapper>
     <Title>Web Board</Title>
     <h1 style={{fontFamily:'Roboto',fontSize:"30px"}}>welcome {showUser}</h1>
-    {loginToggle?<button onClick={logOut}>logout</button>:null}
+    {loginToggle?<LogoutButton onClick={logOut}>LOG OUT</LogoutButton>:null}
     <BrowserRouter>
     <LinkList>
     <li><StyledLink to="/webBoard/">Home</StyledLink></li>
