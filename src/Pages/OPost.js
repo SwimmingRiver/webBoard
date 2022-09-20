@@ -1,8 +1,9 @@
 
-import { useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import userInfoSlice from './../Redux/UserReducer';
 
 const Title = styled.h1`
     font-family:'Roboto';
@@ -19,7 +20,6 @@ const PostWriter = styled.h2`
 const PostContent = styled.p`
     font-family: 'Noto Sans KR';
     text-align: left;
-    border: solid 1px black;
     height: 30vh;
     margin: 0 13px 0 13px;
 `;
@@ -27,9 +27,9 @@ const PostWrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    border: solid 1px black;
-    height: 40vh;
-    width: 40vw;
+    border-radius: 10px;
+    height: 60vh;
+    width: 60vw;
     min-width: 40vw;
 `;
 
@@ -37,18 +37,28 @@ function OPost(){
     let {index} = useParams();
     const loadPost = useSelector((state)=>state[1].map((i)=>i));
     const NowLogin = useSelector((state)=>state[0].map(i=>i));
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
     const [userAdmit,setUserAdmit]=useState(false);
     const checkAdmit = ()=>{
         for(let i=0;i<NowLogin.length;i++){
             if(NowLogin[i].on){
                 if(loadPost[index].writer === NowLogin[i].id){
-                    console.log("1:"+loadPost[index].writer+"2:"+NowLogin[i].id);
                     setUserAdmit(true);
                 }
             }
         }
     }
-    useEffect(checkAdmit,[])
+    useEffect(checkAdmit,[]);
+    const selectedPost = useSelector((state)=>state[1].map((i)=>i));
+    const Delete =()=>{
+        const nowPage = document.location.href.split("@");
+        const pageInt = parseInt(nowPage[1]);
+        // console.log(selectedPost[pageInt].index)
+        selectedPost.splice(pageInt,1);
+        dispatch(userInfoSlice.actions.boardDelete(pageInt));
+        // navigate("/webBoard/board");
+    }
     return <>
     <PostWrapper>
     <Title>{loadPost[index].title}</Title>
@@ -56,8 +66,8 @@ function OPost(){
     <PostContent>{loadPost[index].content}</PostContent>
    <div>
     <p>{NowLogin.id}</p>
-    {userAdmit?<button onClick={checkAdmit}>edit</button>:null}
-    {userAdmit?<button>delete</button>:null}
+    {userAdmit?<button>edit</button>:null}
+    {userAdmit?<button onClick={Delete}>delete</button>:null}
     </div>
     </PostWrapper>
     </>

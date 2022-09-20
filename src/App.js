@@ -111,7 +111,7 @@ function App() {
             <Route path="/webBoard/join" element={<Join/>}/>
             <Route path='/webBoard/write' element={<Write/>}/>
             <Route path='/webBoard/board' element={<Board/>}/>
-            <Route path='/webBoard/Post/:index' element={<OPost/>}/>
+            <Route path='/webBoard/Post/@:index' element={<OPost/>}/>
         </Routes>
        
     </BrowserRouter>

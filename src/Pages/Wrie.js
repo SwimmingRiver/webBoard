@@ -1,5 +1,5 @@
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {userInfoSlice} from './../Redux/UserReducer';
 import { useNavigate } from 'react-router-dom';
@@ -46,6 +46,7 @@ function Write(){
     const writerData = useSelector((state)=>state[0].map((i)=>i));
     const navigate = useNavigate();
     const clist = useSelector(state=>state);
+    const [postNum,setPostNum]=useState(1);
     const handleOnChange=(e)=>{
         const {name,value}=e.target;
         setPost((prev)=>({
@@ -56,22 +57,25 @@ function Write(){
     }
     const posting = (title,content)=>{
        let writer = ""
-        for(let i = 0;i<writerData.length;i++){
+
+       for(let i = 0;i<writerData.length;i++){
          if(writerData[i].on){
              writer=writerData[i].id
+             
          }
         }
          let lList = {
              title:title,
              content:content,
              writer:writer,
+             index:clist[1].map(i=>i.index)[clist[1].length-1]+1
          }
          return lList;
     }
     const submit = ()=>{
         dispatch(userInfoSlice.actions.boardPost(posting(post.title,post.content)))
         alert("작성 완료");
-        navigate("/webBoard/board")
+        navigate("/webBoard/board") 
     }
 
     return<>

@@ -56,7 +56,7 @@ function Board(){
         {loadList.map((i,index)=><TList key={i.writer+index}>
            <LBoxNum>{index}</LBoxNum>
             <StyledLink to={{
-                pathname: `/webBoard/post/${index}`,
+                pathname: `/webBoard/post/@${index}`,
               
             }}><LBoxTitle>{i.title}</LBoxTitle></StyledLink><LBoxId>{i.writer}</LBoxId></TList>)}
     </BoardList>
