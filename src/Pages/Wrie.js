@@ -42,7 +42,7 @@ function Write(){
         content:"",
         writer:"",
     })
-    const dispatch =useDispatch();
+    const dispatch = useDispatch();
     const writerData = useSelector((state)=>state[0].map((i)=>i));
     const navigate = useNavigate();
     const clist = useSelector(state=>state);
@@ -75,7 +75,7 @@ function Write(){
     const submit = ()=>{
         dispatch(userInfoSlice.actions.boardPost(posting(post.title,post.content)))
         alert("작성 완료");
-        navigate("/webBoard/board") 
+        navigate("/board") 
     }
 
     return<>

@@ -30,13 +30,13 @@ export let initialState =[
                 title:"notice",
                 content:"notice",
                 writer:"master",
-                index:0
+                number:0
             },
             {
                 title:"aafirst",
                 content:"i'm aa",
                 writer:"aa",
-                index:1
+                number:1
             }
         ]
 ]
@@ -62,12 +62,11 @@ export const userInfoSlice = createSlice({
             state[1].push(action.payload);
             localStorage.setItem("postList",JSON.stringify(state[1]))
         },
-        boardEdit:(state,action)=>{
-        },
         boardDelete:(state,action)=>{
-            state.splice(1,1,action.payload);
-        }
-        
+         state[1].splice(state[1].map(i=>i.number).indexOf(action.payload.number),1);
+        },
+         boardEdit:(state,action)=>{
+        },
     }
 })
 export default userInfoSlice.reducer;

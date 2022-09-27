@@ -56,7 +56,7 @@ function Login(){
                 dispatch(userInfoSlice.actions.userLogin(lList))
                 alert("login")
                 console.log(lList);
-                navigate("/webBoard");
+                navigate("/");
             }else{alert("잘못된 비밀번호입니다.")}
         }else{alert("가입되지않은 아이디입니다.")}
         

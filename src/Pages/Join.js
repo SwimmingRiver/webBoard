@@ -92,7 +92,7 @@ function Join(){
         }else{
             dispatch(userInfoSlice.actions.userJoin(addUser(user.id,user.password,user.name)));
             alert("Join!");
-            navigate("/webBoard/");
+            navigate("/");
         }
     }
 

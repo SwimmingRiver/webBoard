@@ -1,5 +1,5 @@
 
-import { useSelector } from 'react-redux';
+import { useSelector} from 'react-redux';
 import Board from './Board';
 function Main(){
  const PostList = useSelector((state)=>state[1]); 

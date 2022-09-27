@@ -7,6 +7,7 @@ import { BrowserRouter, Route, Routes, Link } from 'react-router-dom';
 import {useEffect, useState} from 'react';
 import Board from './Pages/Board';
 import OPost from './Pages/OPost';
+import BPost from './Pages/BPost';
 import {userInfoSlice} from './Redux/UserReducer';
 import styled from 'styled-components';
 
@@ -88,8 +89,6 @@ function App() {
       }
       dispatch(userInfoSlice.actions.userLogout(outUser)); 
     }
-  
-
 
   return (
     <>
@@ -99,19 +98,20 @@ function App() {
     {loginToggle?<LogoutButton onClick={logOut}>LOG OUT</LogoutButton>:null}
     <BrowserRouter>
     <LinkList>
-    <li><StyledLink to="/webBoard/">Home</StyledLink></li>
-    <li>{loginToggle?null:<StyledLink to="/webBoard/join">Join</StyledLink>}</li>
-    {loginToggle?null:<StyledLink to="/webBoard/login">Login</StyledLink>}
-    {loginToggle?<StyledLink to="/webBoard/write">Write</StyledLink>:null}
-    <StyledLink to="/webBoard/board">Board</StyledLink>
+    <li><StyledLink to="/">Home</StyledLink></li>
+    <li>{loginToggle?null:<StyledLink to="/join">Join</StyledLink>}</li>
+    {loginToggle?null:<StyledLink to="/login">Login</StyledLink>}
+    {loginToggle?<StyledLink to="/write">Write</StyledLink>:null}
+    <StyledLink to="/board">Board</StyledLink>
     </LinkList>
         <Routes>
-            <Route path="/webBoard/" element={<Main/>}/>
-            <Route path="/webBoard/login" element={<Login/>}/>
-            <Route path="/webBoard/join" element={<Join/>}/>
-            <Route path='/webBoard/write' element={<Write/>}/>
-            <Route path='/webBoard/board' element={<Board/>}/>
-            <Route path='/webBoard/Post/@:index' element={<OPost/>}/>
+            <Route path="/" element={<Main/>}/>
+            <Route path="/login" element={<Login/>}/>
+            <Route path="/join" element={<Join/>}/>
+            <Route path='/write' element={<Write/>}/>
+            <Route path='/board' element={<Board/>}/>
+            <Route path='/Post/@:_index' element={<OPost/>}/>
+            {/* <Route path='/Post/@:pNum' element={<BPost/>}/> */}
         </Routes>
        
     </BrowserRouter>

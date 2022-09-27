@@ -34,7 +34,7 @@ const PostWrapper = styled.div`
 `;
 
 function OPost(){
-    let {index} = useParams();
+    let {_index} = useParams();
     const loadPost = useSelector((state)=>state[1].map((i)=>i));
     const NowLogin = useSelector((state)=>state[0].map(i=>i));
     const dispatch = useDispatch();
@@ -43,27 +43,48 @@ function OPost(){
     const checkAdmit = ()=>{
         for(let i=0;i<NowLogin.length;i++){
             if(NowLogin[i].on){
-                if(loadPost[index].writer === NowLogin[i].id){
+                if(loadPost[_index].writer === NowLogin[i].id){
                     setUserAdmit(true);
                 }
             }
         }
     }
-    useEffect(checkAdmit,[]);
-    const selectedPost = useSelector((state)=>state[1].map((i)=>i));
-    const Delete =()=>{
-        const nowPage = document.location.href.split("@");
-        const pageInt = parseInt(nowPage[1]);
-        // console.log(selectedPost[pageInt].index)
-        selectedPost.splice(pageInt,1);
-        dispatch(userInfoSlice.actions.boardDelete(pageInt));
-        // navigate("/webBoard/board");
+    useEffect(checkAdmit,[_index]);
+    const nowPage = document.location.href.split("@");
+    const pageInt = parseInt(nowPage[1]);
+    
+    const [sPost,setSPost]=useState({
+        title:"",
+        writer:"",
+        content:"",
+        index:0,
+    })
+   function select(){
+        for(let i =0;i<loadPost.length;i++){
+            if(i===pageInt){
+                setSPost({
+                    title:loadPost[i].title,
+                    writer:loadPost[i].writer,
+                    content:loadPost[i].content,
+                    number:loadPost[i].number,
+            })
+            break;
+            }
+        }
+    }
+
+    const Delete=()=>{
+        select();
+        console.log(sPost)
+        dispatch(userInfoSlice.actions.boardDelete(sPost));
+        // navigate("/board");
     }
     return <>
     <PostWrapper>
-    <Title>{loadPost[index].title}</Title>
-    <PostWriter>{loadPost[index].writer}</PostWriter>
-    <PostContent>{loadPost[index].content}</PostContent>
+    <Title>{loadPost[_index].title}</Title>
+    <PostWriter>{loadPost[_index].writer}</PostWriter>
+    <PostContent>{loadPost[_index].content}</PostContent>
+    <h1>{sPost.number}</h1>
    <div>
     <p>{NowLogin.id}</p>
     {userAdmit?<button>edit</button>:null}
