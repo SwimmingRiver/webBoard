@@ -57,34 +57,19 @@ function OPost(){
         title:"",
         writer:"",
         content:"",
-        index:0,
+        number:0,
     })
-   function select(){
-        for(let i =0;i<loadPost.length;i++){
-            if(i===pageInt){
-                setSPost({
-                    title:loadPost[i].title,
-                    writer:loadPost[i].writer,
-                    content:loadPost[i].content,
-                    number:loadPost[i].number,
-            })
-            break;
-            }
-        }
-    }
 
     const Delete=()=>{
-        select();
-        console.log(sPost)
-        dispatch(userInfoSlice.actions.boardDelete(sPost));
-        // navigate("/board");
+        let dNum = loadPost[pageInt].number
+        dispatch(userInfoSlice.actions.boardDelete(pageInt));
+        navigate("/board");
     }
     return <>
     <PostWrapper>
     <Title>{loadPost[_index].title}</Title>
     <PostWriter>{loadPost[_index].writer}</PostWriter>
     <PostContent>{loadPost[_index].content}</PostContent>
-    <h1>{sPost.number}</h1>
    <div>
     <p>{NowLogin.id}</p>
     {userAdmit?<button>edit</button>:null}

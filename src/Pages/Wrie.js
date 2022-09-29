@@ -68,7 +68,7 @@ function Write(){
              title:title,
              content:content,
              writer:writer,
-             index:clist[1].map(i=>i.index)[clist[1].length-1]+1
+             number:clist[1].map(i=>i.number)[clist[1].length-1]+1
          }
          return lList;
     }

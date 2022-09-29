@@ -63,10 +63,10 @@ export const userInfoSlice = createSlice({
             localStorage.setItem("postList",JSON.stringify(state[1]))
         },
         boardDelete:(state,action)=>{
-         state[1].splice(state[1].map(i=>i.number).indexOf(action.payload.number),1);
+            state[1].splice(action.payload,1);
         },
          boardEdit:(state,action)=>{
         },
     }
 })
-export default userInfoSlice.reducer;
+export default userInfoSlice;
