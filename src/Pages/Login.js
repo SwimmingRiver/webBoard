@@ -45,6 +45,7 @@ function Login(){
 
 
     const login = ()=>{
+        if(userLog.id===""){ return null}else{
         if(List.map(i=>i.id).includes(userLog.id)){
             if(List.map(i=>i.pw).includes(userLog.pw)){
                 let lList= {
@@ -55,20 +56,19 @@ function Login(){
                 }
                 dispatch(userInfoSlice.actions.userLogin(lList))
                 alert("login")
-                console.log(lList);
                 navigate("/");
             }else{alert("잘못된 비밀번호입니다.")}
         }else{alert("가입되지않은 아이디입니다.")}
         
         
-       
+        }
     }
     
     return(<>
         <LoginTitle>Login</LoginTitle>
         <LoginWrapper>
         <input placeholder="id" name="id" value={userLog.id} onChange={handleOnChange}/>
-        <input placeholder="pw" name='pw' value={userLog.pw} onChange={handleOnChange}/>
+        <input placeholder="pw" name='pw' value={userLog.pw} onChange={handleOnChange} type='password'/>
         <LoginButton onClick={login}>login</LoginButton>
         {showLogin}
         </LoginWrapper>

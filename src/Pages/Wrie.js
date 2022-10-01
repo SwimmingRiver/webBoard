@@ -1,5 +1,5 @@
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {userInfoSlice} from './../Redux/UserReducer';
 import { useNavigate } from 'react-router-dom';
@@ -46,7 +46,6 @@ function Write(){
     const writerData = useSelector((state)=>state[0].map((i)=>i));
     const navigate = useNavigate();
     const clist = useSelector(state=>state);
-    const [postNum,setPostNum]=useState(1);
     const handleOnChange=(e)=>{
         const {name,value}=e.target;
         setPost((prev)=>({

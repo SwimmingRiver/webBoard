@@ -116,11 +116,11 @@ function Join(){
     </Sector>
     <Sector>
         <JoinSubject>PW </JoinSubject>
-        <input onChange={handleOnChange} name="password"value={user.password}/>
+        <input onChange={handleOnChange} name="password"value={user.password} type='password'/>
     </Sector>
     <Sector>
         <JoinSubject>Pw Repeat </JoinSubject>
-        <input onChange={checkRePw} name="rePassword" value={rePassword}/>
+        <input onChange={checkRePw} name="rePassword" value={rePassword} type='password'/>
     </Sector>
     <Sector>
         <JoinSubject>NAME </JoinSubject>

@@ -4,24 +4,6 @@ import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import userInfoSlice from './../Redux/UserReducer';
 
-const Title = styled.h1`
-    font-family:'Roboto';
-    font-weight: 500;
-    font-size: 2em;
-    border-bottom: 1px solid black;
-`;
-const PostWriter = styled.h2`
-    text-align: right;
-    width:40vw;
-    margin-right:25px ;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-`;
-const PostContent = styled.p`
-    font-family: 'Noto Sans KR';
-    text-align: left;
-    height: 30vh;
-    margin: 0 13px 0 13px;
-`;
 const PostWrapper = styled.div`
     display: flex;
     flex-direction: column;
@@ -40,6 +22,7 @@ function EPost(){
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [userAdmit,setUserAdmit]=useState(false);
+    const [editToggle,setEditToggle]=useState(false);
     const checkAdmit = ()=>{
         for(let i=0;i<NowLogin.length;i++){
             if(NowLogin[i].on){
@@ -61,7 +44,6 @@ function EPost(){
     })
 
     const Delete=()=>{
-        let dNum = loadPost[pageInt].number
         dispatch(userInfoSlice.actions.boardDelete(pageInt));
         navigate("/board");
     }
@@ -73,15 +55,27 @@ function EPost(){
             writer:wName,
             number:pageInt
         }))
+        setEditToggle(true)
     }
     const Edit=()=>{
-        dispatch(userInfoSlice.actions.boardEdit(sPost))
-        navigate("/board");
+        let q = window.confirm("수정하시겠습니까?")
+        if(q){
+                if(editToggle===true){
+                dispatch(userInfoSlice.actions.boardEdit(sPost))
+                setEditToggle(!editToggle);
+                
+                navigate("/board");
+                }else{
+                    alert('edit complete');
+                    navigate("/board");
+                    }
+        }else{
+            return null
+        }
     }
     return <>
     <PostWrapper>
     <input placeholder={loadPost[_index].title} onChange={typing} name='title' value={sPost.title} />
-    <PostWriter>{loadPost[_index].writer}</PostWriter>
     <textarea placeholder={loadPost[_index].content} onChange={typing} name='content' value={sPost.content}/>
    <div>
     <p>{NowLogin.id}</p>
