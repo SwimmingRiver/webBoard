@@ -66,6 +66,7 @@ export const userInfoSlice = createSlice({
             state[1].splice(action.payload,1);
         },
          boardEdit:(state,action)=>{
+            state[1].splice(action.payload.number,1,action.payload)
         },
     }
 })

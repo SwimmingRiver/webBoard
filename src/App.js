@@ -7,9 +7,9 @@ import { BrowserRouter, Route, Routes, Link } from 'react-router-dom';
 import {useEffect, useState} from 'react';
 import Board from './Pages/Board';
 import OPost from './Pages/OPost';
-import BPost from './Pages/BPost';
 import {userInfoSlice} from './Redux/UserReducer';
 import styled from 'styled-components';
+import EPost from './Pages/EPost';
 
 //styled
 const Wrapper =styled.div`
@@ -111,7 +111,7 @@ function App() {
             <Route path='/write' element={<Write/>}/>
             <Route path='/board' element={<Board/>}/>
             <Route path='/Post/@:_index' element={<OPost/>}/>
-            {/* <Route path='/Post/@:pNum' element={<BPost/>}/> */}
+            <Route path='/EPost/@:_index' element={<EPost/>}/>
         </Routes>
        
     </BrowserRouter>

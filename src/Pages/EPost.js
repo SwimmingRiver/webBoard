@@ -1,6 +1,5 @@
-
 import { useSelector, useDispatch } from 'react-redux';
-import { useParams, useNavigate,Link } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import userInfoSlice from './../Redux/UserReducer';
@@ -33,10 +32,11 @@ const PostWrapper = styled.div`
     min-width: 40vw;
 `;
 
-function OPost(){
+function EPost(){
     let {_index} = useParams();
     const loadPost = useSelector((state)=>state[1].map((i)=>i));
     const NowLogin = useSelector((state)=>state[0].map(i=>i));
+    const [wName,setWName] = useState("")
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [userAdmit,setUserAdmit]=useState(false);
@@ -45,6 +45,7 @@ function OPost(){
             if(NowLogin[i].on){
                 if(loadPost[_index].writer === NowLogin[i].id){
                     setUserAdmit(true);
+                    setWName(loadPost[_index].writer);
                 }
             }
         }
@@ -52,7 +53,6 @@ function OPost(){
     useEffect(checkAdmit,[_index]);
     const nowPage = document.location.href.split("@");
     const pageInt = parseInt(nowPage[1]);
-    
     const [sPost,setSPost]=useState({
         title:"",
         writer:"",
@@ -65,17 +65,30 @@ function OPost(){
         dispatch(userInfoSlice.actions.boardDelete(pageInt));
         navigate("/board");
     }
+    const typing =(e)=>{
+        const {name,value}=e.target;
+        setSPost((prev)=>({
+            ...prev,
+            [name]:value,
+            writer:wName,
+            number:pageInt
+        }))
+    }
+    const Edit=()=>{
+        dispatch(userInfoSlice.actions.boardEdit(sPost))
+        navigate("/board");
+    }
     return <>
     <PostWrapper>
-    <Title>{loadPost[_index].title}</Title>
+    <input placeholder={loadPost[_index].title} onChange={typing} name='title' value={sPost.title} />
     <PostWriter>{loadPost[_index].writer}</PostWriter>
-    <PostContent>{loadPost[_index].content}</PostContent>
+    <textarea placeholder={loadPost[_index].content} onChange={typing} name='content' value={sPost.content}/>
    <div>
     <p>{NowLogin.id}</p>
-    {userAdmit?<button><Link to={{ pathname: `/EPost/@${pageInt}`}}>edit</Link></button>:null}
-    {userAdmit?<button onClick={Delete}>delete</button>:null}
+    <button onClick={Edit}>edit</button>
+    <button onClick={Delete}>delete</button>
     </div>
     </PostWrapper>
     </>
 }
-export default OPost;
+export default EPost;
