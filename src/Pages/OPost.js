@@ -52,16 +52,9 @@ function OPost(){
     useEffect(checkAdmit,[_index]);
     const nowPage = document.location.href.split("@");
     const pageInt = parseInt(nowPage[1]);
-    
-    const [sPost,setSPost]=useState({
-        title:"",
-        writer:"",
-        content:"",
-        number:0,
-    })
+ 
 
     const Delete=()=>{
-        let dNum = loadPost[pageInt].number
         dispatch(userInfoSlice.actions.boardDelete(pageInt));
         navigate("/board");
     }

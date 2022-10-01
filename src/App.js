@@ -51,7 +51,6 @@ border: 1px solid black;
 function App() {
   const [loginToggle,setLoginToggle]=useState(false);
   const loginLoad = useSelector((state)=>state[0].map(i=>i));
-  const postLoad = useSelector((state)=>state[1].map(i=>i));
   const dispatch = useDispatch();
   const [showUser,setShowUser]=useState("");
  const aaa=()=>{ 
