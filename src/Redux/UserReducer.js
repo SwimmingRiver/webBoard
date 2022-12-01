@@ -33,7 +33,7 @@ export let initialState =[
                 number:0
             },
             {
-                title:"aafirst",
+                title:"Hello",
                 content:"i'm aa",
                 writer:"aa",
                 number:1
