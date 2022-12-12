@@ -11,7 +11,7 @@
     <img src="./Image/read.gif" width="300px"></img>
     #### 본인이 작성한 글만 수정및 삭제가 가능합니다.
 - ### 게시글 수정하기
-    <img src="./Image/edit.gif" width="300px"></img>
+    <img src="./Image/edit2.gif" width="300px"></img>
 - ### 게시글 삭제하기
     <img src="./Image/delete.gif" width="300px"></img>
 - ### 기타

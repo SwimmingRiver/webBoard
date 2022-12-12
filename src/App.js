@@ -29,11 +29,13 @@ border:solid 2px black;
 border-radius: 10px;
 width: 70vw;
 margin-bottom: 10px;
+background-color: rgb(28,168,175);
 `;
 const StyledLink = styled(Link)`
 text-decoration: none;
 font-size: 50px;
-color: black;
+font-weight: bold;
+color: white;
 font-family: 'raleway';
 `;
 const LogoutButton = styled.button`

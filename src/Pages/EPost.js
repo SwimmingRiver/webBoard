@@ -13,6 +13,22 @@ const PostWrapper = styled.div`
     width: 60vw;
     min-width: 40vw;
 `;
+const ContentBox = styled.textarea`
+    width: 30vw;
+    height: 30vh;
+`;
+const TitleBox = styled.input`
+    width: 30vw;
+`;
+const SubmitButton = styled.button`
+    font-family: 'Raleway';
+    font-size: 12px;
+    width: 60px;
+    color: black;
+    background-color: white;
+    border-radius: 5px;
+    border: 1px solid black;
+`;
 
 function EPost(){
     let {_index} = useParams();
@@ -75,12 +91,12 @@ function EPost(){
     }
     return <>
     <PostWrapper>
-    <input placeholder={loadPost[_index].title} onChange={typing} name='title' value={sPost.title} />
-    <textarea placeholder={loadPost[_index].content} onChange={typing} name='content' value={sPost.content}/>
+    <TitleBox placeholder={loadPost[_index].title} onChange={typing} name='title' value={sPost.title} />
+    <ContentBox placeholder={loadPost[_index].content} onChange={typing} name='content' value={sPost.content}/>
    <div>
     <p>{NowLogin.id}</p>
-    <button onClick={Edit}>edit</button>
-    <button onClick={Delete}>delete</button>
+    <SubmitButton onClick={Edit}>Edit</SubmitButton>
+    <SubmitButton onClick={Delete}>Delete</SubmitButton>
     </div>
     </PostWrapper>
     </>
